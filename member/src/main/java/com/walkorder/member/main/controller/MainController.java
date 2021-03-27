@@ -15,7 +15,7 @@ public class MainController {
 
     @RequestMapping(value = "/memberMain")
     public String memberMain() {
-        return "member";
+        return "member/member";
     }
 
 }
