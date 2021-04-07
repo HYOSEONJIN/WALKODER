@@ -55,6 +55,7 @@ public class KakaoService {
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
             access_Token = element.getAsJsonObject().get("access_token").getAsString();
+            System.out.println(access_Token);
             // refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
             br.close();
             bw.close();
@@ -63,6 +64,5 @@ public class KakaoService {
             System.out.println(e.getMessage());
         }
         return access_Token;
-
     }
 }
