@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class LoginController {
 
     final String RESTAPI_KEY = "0e5bc43cde12fc5035c512eca57aa8be";
-    final String REDIRECT_URI = "http://localhost:8080/kakao/callback";
+    final String REDIRECT_URI = "http://localhost:8080/kakaoLogin";
 
     @Autowired
     private KakaoService kakaoservice;
@@ -39,21 +39,19 @@ public class LoginController {
         url.append("https://kauth.kakao.com/oauth/authorize?");
         url.append("client_id=" + RESTAPI_KEY);
         url.append("&redirect_uri=" + REDIRECT_URI);
-        url.append("&response_type=code");
+        url.append("&response_type=code&state=url_parameter");
 
         return "redirect:" + url.toString();
     }
 
-    @RequestMapping(value = "/kakao/callback", produces = "application/json", method = { RequestMethod.GET,
-            RequestMethod.POST })
-    public String kakaoLogin(@RequestParam("code") String code, RedirectAttributes ra, HttpSession session,
-            HttpServletResponse response) throws IOException {
-        // http://localhost:8080/kakao/callback?code=RTPCN_ZskA6OY87e5i1D80olEgRWEWxEu-vPkLEbvJL6OEBcMi5w7VC5Lqvp6SxB_yfLXAopb1UAAAF4clS7QA
-
-        log.info("kakao code : ", code);
-        String accessToken = kakaoservice.getAccessTOken(code, RESTAPI_KEY);
-
-        return "index";
+    // @RequestMapping(value = "/kakao/callback", produces = "application/json",
+    // method = { RequestMethod.GET,
+    // RequestMethod.POST })
+    @RequestMapping("/kakaoLogin")
+    public void kakaoLogin(@RequestParam("code") String code, HttpServletResponse response) throws IOException {
+        System.out.println("코드" + code);
+        String access_Token = kakaoservice.getAccessToken(code);
+        log.info("엑세스토큰 : ", access_Token);
     }
 
 }

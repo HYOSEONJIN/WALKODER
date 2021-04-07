@@ -67,7 +67,7 @@
                                             Login
                                         </a>
                                         <hr>
-                                        <a href="/kakao" class="btn btn-google btn-user btn-block">
+                                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=0e5bc43cde12fc5035c512eca57aa8be&redirect_uri=http://localhost:8080/kakaoLogin&response_type=code" class="btn btn-google btn-user btn-block">
                                             <div style="width: 50px;">&nbsp;</div>
                                             
                                         </a>
